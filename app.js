@@ -3,6 +3,8 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
+const usePassport = require('./config/passport')//寫在session之後
+
 
 const routes = require('./routes')
 require('./config/mongoose')
@@ -14,6 +16,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+usePassport(app)//把app當值丟到passport裡面
 
 app.use(routes)
 app.use(session({
