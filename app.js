@@ -16,15 +16,15 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
-usePassport(app)//把app當值丟到passport裡面
-
-app.use(routes)
 app.use(session({
   secret: 'ThisIsMySecret',
   resave: false,
   saveUninitialized: true
 }))
 
+usePassport(app)//把app當值丟到passport裡面，在session之後、app.use(routes)之前
+
+app.use(routes)
 app.listen(PORT, () => {
   console.log(`App is running on http://localhost:${PORT}`)
 })
