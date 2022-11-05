@@ -7,9 +7,9 @@ Icon?
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-.env
 
 # npm
-node_modules
+/node_modules
 *.log
 *.gz
+.env
